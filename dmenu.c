@@ -721,6 +721,27 @@ main(int argc, char *argv[])
 	XWindowAttributes wa;
 	int i, fast = 0;
 
+    /* Use environment variables to configure colors and font */
+    /* normal background color */
+    if (getenv("DMENU_NB") != NULL)
+        colors[SchemeNorm][ColBg] = getenv("DMENU_NB");
+
+    /* normal foreground color */
+    if (getenv("DMENU_NF") != NULL)
+        colors[SchemeNorm][ColFg] = getenv("DMENU_NF");
+
+    /* selected background color */
+    if (getenv("DMENU_SB") != NULL)
+        colors[SchemeSel][ColBg] = getenv("DMENU_SB");
+
+    /* selected foreground color */
+    if (getenv("DMENU_SF") != NULL)
+        colors[SchemeSel][ColFg] = getenv("DMENU_SF");
+
+    /* font */
+    if (getenv("DMENU_FN") != NULL)
+        fonts[0] = getenv("DMENU_FN");
+
 	for (i = 1; i < argc; i++)
 		/* these options take no arguments */
 		if (!strcmp(argv[i], "-v")) {      /* prints version information */
